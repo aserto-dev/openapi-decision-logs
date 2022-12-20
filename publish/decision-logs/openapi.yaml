@@ -1,0 +1,2354 @@
+extensionprops: {}
+openapi: 3.0.3
+components:
+  extensionprops: {}
+  schemas:
+    protobufAny:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          type_url:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          value:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+              format: byte
+    protobufNullValue:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: string
+        description: |-
+          `NullValue` is a singleton enumeration to represent the null value for the
+          `Value` type union.
+
+           The JSON representation for `NullValue` is JSON `null`.
+
+           - NULL_VALUE: Null value.
+        enum:
+          - NULL_VALUE
+        default: NULL_VALUE
+    rpcStatus:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          code:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: integer
+              format: int32
+          details:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: array
+              items:
+                ref: '#/components/schemas/protobufAny'
+                value:
+                  extensionprops: {}
+                  type: object
+                  properties:
+                    type_url:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                    value:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                        format: byte
+          message:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2Decision:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        title: represents a decision that an authorizer performed in the past
+        properties:
+          annotations:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: object
+          id:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          outcomes:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: object
+          path:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          policy:
+            ref: '#/components/schemas/v2DecisionPolicy'
+            value:
+              extensionprops: {}
+              type: object
+              title: information about a policy used in a decision
+              properties:
+                context:
+                  ref: '#/components/schemas/v2PolicyContext'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      decisions:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                      path:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                policy_instance:
+                  ref: '#/components/schemas/v2PolicyInstance'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      instance_label:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      name:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                registry_digest:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                registry_image:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                registry_service:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                registry_tag:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+          resource:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: object
+          tenant_id:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          timestamp:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+              format: date-time
+          user:
+            ref: '#/components/schemas/v2DecisionUser'
+            value:
+              extensionprops: {}
+              type: object
+              title: information about a user on behalf of whom a decision was made
+              properties:
+                context:
+                  ref: '#/components/schemas/v2IdentityContext'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      identity:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      type:
+                        ref: '#/components/schemas/v2IdentityType'
+                        value:
+                          extensionprops: {}
+                          type: string
+                          description: |-
+                            Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                             - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                             - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                             - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                             - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                          enum:
+                            - IDENTITY_TYPE_UNKNOWN
+                            - IDENTITY_TYPE_NONE
+                            - IDENTITY_TYPE_SUB
+                            - IDENTITY_TYPE_JWT
+                          default: IDENTITY_TYPE_UNKNOWN
+                email:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                id:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+    v2DecisionLog:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          url:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2DecisionLogItem:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          name:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2DecisionPolicy:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        title: information about a policy used in a decision
+        properties:
+          context:
+            ref: '#/components/schemas/v2PolicyContext'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                decisions:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: array
+                    items:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                path:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+          policy_instance:
+            ref: '#/components/schemas/v2PolicyInstance'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                instance_label:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                name:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+          registry_digest:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          registry_image:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          registry_service:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          registry_tag:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2DecisionUser:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        title: information about a user on behalf of whom a decision was made
+        properties:
+          context:
+            ref: '#/components/schemas/v2IdentityContext'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                identity:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                type:
+                  ref: '#/components/schemas/v2IdentityType'
+                  value:
+                    extensionprops: {}
+                    type: string
+                    description: |-
+                      Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                       - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                       - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                       - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                       - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                    enum:
+                      - IDENTITY_TYPE_UNKNOWN
+                      - IDENTITY_TYPE_NONE
+                      - IDENTITY_TYPE_SUB
+                      - IDENTITY_TYPE_JWT
+                    default: IDENTITY_TYPE_UNKNOWN
+          email:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          id:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2ExecuteQueryRequest:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          instance_label:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          page:
+            ref: '#/components/schemas/v2PaginationRequest'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+                token:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+          policy_name:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          top_n:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+              format: int64
+    v2ExecuteQueryResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          page:
+            ref: '#/components/schemas/v2PaginationResponse'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                next_token:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                result_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+                total_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+          results:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: array
+              items:
+                ref: '#/components/schemas/v2Result'
+                value:
+                  extensionprops: {}
+                  type: object
+                  properties:
+                    event:
+                      ref: '#/components/schemas/v2Decision'
+                      value:
+                        extensionprops: {}
+                        type: object
+                        title: represents a decision that an authorizer performed in the past
+                        properties:
+                          annotations:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: object
+                          id:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                          outcomes:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: object
+                          path:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                          policy:
+                            ref: '#/components/schemas/v2DecisionPolicy'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              title: information about a policy used in a decision
+                              properties:
+                                context:
+                                  ref: '#/components/schemas/v2PolicyContext'
+                                  value:
+                                    extensionprops: {}
+                                    type: object
+                                    properties:
+                                      decisions:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: array
+                                          items:
+                                            ref: ""
+                                            value:
+                                              extensionprops: {}
+                                              type: string
+                                      path:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                policy_instance:
+                                  ref: '#/components/schemas/v2PolicyInstance'
+                                  value:
+                                    extensionprops: {}
+                                    type: object
+                                    properties:
+                                      instance_label:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      name:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                registry_digest:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                registry_image:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                registry_service:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                registry_tag:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                          resource:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: object
+                          tenant_id:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                          timestamp:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                              format: date-time
+                          user:
+                            ref: '#/components/schemas/v2DecisionUser'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              title: information about a user on behalf of whom a decision was made
+                              properties:
+                                context:
+                                  ref: '#/components/schemas/v2IdentityContext'
+                                  value:
+                                    extensionprops: {}
+                                    type: object
+                                    properties:
+                                      identity:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      type:
+                                        ref: '#/components/schemas/v2IdentityType'
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                          description: |-
+                                            Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                                             - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                                             - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                                             - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                                             - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                                          enum:
+                                            - IDENTITY_TYPE_UNKNOWN
+                                            - IDENTITY_TYPE_NONE
+                                            - IDENTITY_TYPE_SUB
+                                            - IDENTITY_TYPE_JWT
+                                          default: IDENTITY_TYPE_UNKNOWN
+                                email:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                id:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                    log:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+    v2GetDecisionLogResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          log:
+            ref: '#/components/schemas/v2DecisionLog'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                url:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+    v2GetDecisionsResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          decision:
+            ref: '#/components/schemas/v2Decision'
+            value:
+              extensionprops: {}
+              type: object
+              title: represents a decision that an authorizer performed in the past
+              properties:
+                annotations:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                id:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                outcomes:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                path:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                policy:
+                  ref: '#/components/schemas/v2DecisionPolicy'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    title: information about a policy used in a decision
+                    properties:
+                      context:
+                        ref: '#/components/schemas/v2PolicyContext'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            decisions:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: array
+                                items:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                            path:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                      policy_instance:
+                        ref: '#/components/schemas/v2PolicyInstance'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            instance_label:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            name:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                      registry_digest:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_image:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_service:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_tag:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                resource:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                tenant_id:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                timestamp:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                    format: date-time
+                user:
+                  ref: '#/components/schemas/v2DecisionUser'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    title: information about a user on behalf of whom a decision was made
+                    properties:
+                      context:
+                        ref: '#/components/schemas/v2IdentityContext'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            identity:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            type:
+                              ref: '#/components/schemas/v2IdentityType'
+                              value:
+                                extensionprops: {}
+                                type: string
+                                description: |-
+                                  Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                                   - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                                   - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                                   - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                                   - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                                enum:
+                                  - IDENTITY_TYPE_UNKNOWN
+                                  - IDENTITY_TYPE_NONE
+                                  - IDENTITY_TYPE_SUB
+                                  - IDENTITY_TYPE_JWT
+                                default: IDENTITY_TYPE_UNKNOWN
+                      email:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      id:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+    v2GetUserResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          user:
+            ref: '#/components/schemas/v2User'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                url:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+    v2IdentityContext:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          identity:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          type:
+            ref: '#/components/schemas/v2IdentityType'
+            value:
+              extensionprops: {}
+              type: string
+              description: |-
+                Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                 - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                 - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                 - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                 - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+              enum:
+                - IDENTITY_TYPE_UNKNOWN
+                - IDENTITY_TYPE_NONE
+                - IDENTITY_TYPE_SUB
+                - IDENTITY_TYPE_JWT
+              default: IDENTITY_TYPE_UNKNOWN
+    v2IdentityType:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: string
+        description: |-
+          Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+           - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+           - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+           - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+           - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+        enum:
+          - IDENTITY_TYPE_UNKNOWN
+          - IDENTITY_TYPE_NONE
+          - IDENTITY_TYPE_SUB
+          - IDENTITY_TYPE_JWT
+        default: IDENTITY_TYPE_UNKNOWN
+    v2ListDecisionLogsResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          page:
+            ref: '#/components/schemas/v2PaginationResponse'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                next_token:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                result_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+                total_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+          results:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: array
+              items:
+                ref: '#/components/schemas/v2DecisionLogItem'
+                value:
+                  extensionprops: {}
+                  type: object
+                  properties:
+                    name:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+    v2ListUsersResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          page:
+            ref: '#/components/schemas/v2PaginationResponse'
+            value:
+              extensionprops: {}
+              type: object
+              properties:
+                next_token:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                result_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+                total_size:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: integer
+                    format: int32
+          results:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: array
+              items:
+                ref: '#/components/schemas/v2UserItem'
+                value:
+                  extensionprops: {}
+                  type: object
+                  properties:
+                    id:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                    updated_at:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                        format: date-time
+    v2PaginationRequest:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          size:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: integer
+              format: int32
+          token:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2PaginationResponse:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          next_token:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          result_size:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: integer
+              format: int32
+          total_size:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: integer
+              format: int32
+    v2PolicyContext:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          decisions:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: array
+              items:
+                ref: ""
+                value:
+                  extensionprops: {}
+                  type: string
+          path:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2PolicyInstance:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          instance_label:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          name:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2Result:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          event:
+            ref: '#/components/schemas/v2Decision'
+            value:
+              extensionprops: {}
+              type: object
+              title: represents a decision that an authorizer performed in the past
+              properties:
+                annotations:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                id:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                outcomes:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                path:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                policy:
+                  ref: '#/components/schemas/v2DecisionPolicy'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    title: information about a policy used in a decision
+                    properties:
+                      context:
+                        ref: '#/components/schemas/v2PolicyContext'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            decisions:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: array
+                                items:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                            path:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                      policy_instance:
+                        ref: '#/components/schemas/v2PolicyInstance'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            instance_label:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            name:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                      registry_digest:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_image:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_service:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      registry_tag:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                resource:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                tenant_id:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                timestamp:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+                    format: date-time
+                user:
+                  ref: '#/components/schemas/v2DecisionUser'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    title: information about a user on behalf of whom a decision was made
+                    properties:
+                      context:
+                        ref: '#/components/schemas/v2IdentityContext'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            identity:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            type:
+                              ref: '#/components/schemas/v2IdentityType'
+                              value:
+                                extensionprops: {}
+                                type: string
+                                description: |-
+                                  Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                                   - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                                   - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                                   - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                                   - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                                enum:
+                                  - IDENTITY_TYPE_UNKNOWN
+                                  - IDENTITY_TYPE_NONE
+                                  - IDENTITY_TYPE_SUB
+                                  - IDENTITY_TYPE_JWT
+                                default: IDENTITY_TYPE_UNKNOWN
+                      email:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+                      id:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+          log:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2User:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          url:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+    v2UserItem:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: object
+        properties:
+          id:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+          updated_at:
+            ref: ""
+            value:
+              extensionprops: {}
+              type: string
+              format: date-time
+  securitySchemes:
+    DecisionLogsAPIKey:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: apiKey
+        name: authorization
+        in: header
+    TenantID:
+      ref: ""
+      value:
+        extensionprops: {}
+        type: apiKey
+        description: Aserto Tenant ID
+        name: aserto-tenant-id
+        in: header
+info:
+  extensionprops: {}
+  title: Decision Logs
+  description: Authorizer decision logs
+  termsOfService: https://aserto.com/terms/
+  contact:
+    extensionprops: {}
+    name: API Support
+    url: https://aserto.com/support
+    email: support@aserto.com
+  license:
+    extensionprops: {}
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: v0.0.2
+paths:
+  /api/v2/decision_logs/decision_logs:
+    extensionprops: {}
+    get:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: List available decision logs
+      description: Returns a collection of decision logs.
+      operationId: decision_logs.list_decision_logs
+      parameters:
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: page.size
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: integer
+                format: int32
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: page.token
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: policies
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: array
+                items:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: string
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/v2ListDecisionLogsResponse'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      page:
+                        ref: '#/components/schemas/v2PaginationResponse'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            next_token:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            result_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                            total_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                      results:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/v2DecisionLogItem'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                name:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+  /api/v2/decision_logs/decision_logs/{name}:
+    extensionprops: {}
+    get:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: Get a decision log
+      description: Returns the location of a single decison log instance.
+      operationId: decision_logs.get_decision_log
+      parameters:
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: name
+            in: path
+            required: true
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/v2GetDecisionLogResponse'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      log:
+                        ref: '#/components/schemas/v2DecisionLog'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            url:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+  /api/v2/decision_logs/decisions/policy/{policy_name}/{instance_label}:
+    extensionprops: {}
+    get:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: decision event stream
+      description: Returns a stream of decisions
+      operationId: decision_logs.decisions
+      parameters:
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: policy_name
+            in: path
+            required: true
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: instance_label
+            in: path
+            required: true
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: since
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+                format: date-time
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.(streaming responses)
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: ""
+                  value:
+                    extensionprops: {}
+                    type: object
+                    title: Stream result of v2GetDecisionsResponse
+                    properties:
+                      error:
+                        ref: '#/components/schemas/rpcStatus'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            code:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                            details:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: array
+                                items:
+                                  ref: '#/components/schemas/protobufAny'
+                                  value:
+                                    extensionprops: {}
+                                    type: object
+                                    properties:
+                                      type_url:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      value:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                          format: byte
+                            message:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                      result:
+                        ref: '#/components/schemas/v2GetDecisionsResponse'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            decision:
+                              ref: '#/components/schemas/v2Decision'
+                              value:
+                                extensionprops: {}
+                                type: object
+                                title: represents a decision that an authorizer performed in the past
+                                properties:
+                                  annotations:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: object
+                                  id:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: string
+                                  outcomes:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: object
+                                  path:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: string
+                                  policy:
+                                    ref: '#/components/schemas/v2DecisionPolicy'
+                                    value:
+                                      extensionprops: {}
+                                      type: object
+                                      title: information about a policy used in a decision
+                                      properties:
+                                        context:
+                                          ref: '#/components/schemas/v2PolicyContext'
+                                          value:
+                                            extensionprops: {}
+                                            type: object
+                                            properties:
+                                              decisions:
+                                                ref: ""
+                                                value:
+                                                  extensionprops: {}
+                                                  type: array
+                                                  items:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                              path:
+                                                ref: ""
+                                                value:
+                                                  extensionprops: {}
+                                                  type: string
+                                        policy_instance:
+                                          ref: '#/components/schemas/v2PolicyInstance'
+                                          value:
+                                            extensionprops: {}
+                                            type: object
+                                            properties:
+                                              instance_label:
+                                                ref: ""
+                                                value:
+                                                  extensionprops: {}
+                                                  type: string
+                                              name:
+                                                ref: ""
+                                                value:
+                                                  extensionprops: {}
+                                                  type: string
+                                        registry_digest:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+                                        registry_image:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+                                        registry_service:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+                                        registry_tag:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+                                  resource:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: object
+                                  tenant_id:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: string
+                                  timestamp:
+                                    ref: ""
+                                    value:
+                                      extensionprops: {}
+                                      type: string
+                                      format: date-time
+                                  user:
+                                    ref: '#/components/schemas/v2DecisionUser'
+                                    value:
+                                      extensionprops: {}
+                                      type: object
+                                      title: information about a user on behalf of whom a decision was made
+                                      properties:
+                                        context:
+                                          ref: '#/components/schemas/v2IdentityContext'
+                                          value:
+                                            extensionprops: {}
+                                            type: object
+                                            properties:
+                                              identity:
+                                                ref: ""
+                                                value:
+                                                  extensionprops: {}
+                                                  type: string
+                                              type:
+                                                ref: '#/components/schemas/v2IdentityType'
+                                                value:
+                                                  extensionprops: {}
+                                                  type: string
+                                                  description: |-
+                                                    Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                                                     - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                                                     - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                                                     - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                                                     - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                                                  enum:
+                                                    - IDENTITY_TYPE_UNKNOWN
+                                                    - IDENTITY_TYPE_NONE
+                                                    - IDENTITY_TYPE_SUB
+                                                    - IDENTITY_TYPE_JWT
+                                                  default: IDENTITY_TYPE_UNKNOWN
+                                        email:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+                                        id:
+                                          ref: ""
+                                          value:
+                                            extensionprops: {}
+                                            type: string
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+  /api/v2/decision_logs/query:
+    extensionprops: {}
+    post:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: query decision logs
+      description: Returns a collection of raw decision logs strings matching the query specification.
+      operationId: decision_logs.query
+      requestBody:
+        ref: ""
+        value:
+          extensionprops: {}
+          required: true
+          content:
+            application/json:
+              extensionprops: {}
+              schema:
+                ref: '#/components/schemas/v2ExecuteQueryRequest'
+                value:
+                  extensionprops: {}
+                  type: object
+                  properties:
+                    instance_label:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                    page:
+                      ref: '#/components/schemas/v2PaginationRequest'
+                      value:
+                        extensionprops: {}
+                        type: object
+                        properties:
+                          size:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: integer
+                              format: int32
+                          token:
+                            ref: ""
+                            value:
+                              extensionprops: {}
+                              type: string
+                    policy_name:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                    top_n:
+                      ref: ""
+                      value:
+                        extensionprops: {}
+                        type: string
+                        format: int64
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/v2ExecuteQueryResponse'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      page:
+                        ref: '#/components/schemas/v2PaginationResponse'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            next_token:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            result_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                            total_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                      results:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/v2Result'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                event:
+                                  ref: '#/components/schemas/v2Decision'
+                                  value:
+                                    extensionprops: {}
+                                    type: object
+                                    title: represents a decision that an authorizer performed in the past
+                                    properties:
+                                      annotations:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: object
+                                      id:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      outcomes:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: object
+                                      path:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      policy:
+                                        ref: '#/components/schemas/v2DecisionPolicy'
+                                        value:
+                                          extensionprops: {}
+                                          type: object
+                                          title: information about a policy used in a decision
+                                          properties:
+                                            context:
+                                              ref: '#/components/schemas/v2PolicyContext'
+                                              value:
+                                                extensionprops: {}
+                                                type: object
+                                                properties:
+                                                  decisions:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: array
+                                                      items:
+                                                        ref: ""
+                                                        value:
+                                                          extensionprops: {}
+                                                          type: string
+                                                  path:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                            policy_instance:
+                                              ref: '#/components/schemas/v2PolicyInstance'
+                                              value:
+                                                extensionprops: {}
+                                                type: object
+                                                properties:
+                                                  instance_label:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                                  name:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                            registry_digest:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                            registry_image:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                            registry_service:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                            registry_tag:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                      resource:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: object
+                                      tenant_id:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                      timestamp:
+                                        ref: ""
+                                        value:
+                                          extensionprops: {}
+                                          type: string
+                                          format: date-time
+                                      user:
+                                        ref: '#/components/schemas/v2DecisionUser'
+                                        value:
+                                          extensionprops: {}
+                                          type: object
+                                          title: information about a user on behalf of whom a decision was made
+                                          properties:
+                                            context:
+                                              ref: '#/components/schemas/v2IdentityContext'
+                                              value:
+                                                extensionprops: {}
+                                                type: object
+                                                properties:
+                                                  identity:
+                                                    ref: ""
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                                  type:
+                                                    ref: '#/components/schemas/v2IdentityType'
+                                                    value:
+                                                      extensionprops: {}
+                                                      type: string
+                                                      description: |-
+                                                        Identity types, describes the payload type of the identity field inside the IdentityContext message.
+
+                                                         - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.
+                                                         - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.
+                                                         - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.
+                                                         - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token.
+                                                      enum:
+                                                        - IDENTITY_TYPE_UNKNOWN
+                                                        - IDENTITY_TYPE_NONE
+                                                        - IDENTITY_TYPE_SUB
+                                                        - IDENTITY_TYPE_JWT
+                                                      default: IDENTITY_TYPE_UNKNOWN
+                                            email:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                            id:
+                                              ref: ""
+                                              value:
+                                                extensionprops: {}
+                                                type: string
+                                log:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+  /api/v2/decision_logs/users:
+    extensionprops: {}
+    get:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: List users referenced by decision logs
+      description: Returns a collection of users that may be referenced by decision logs.
+      operationId: decision_logs.list_users
+      parameters:
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: page.size
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: integer
+                format: int32
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: page.token
+            in: query
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/v2ListUsersResponse'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      page:
+                        ref: '#/components/schemas/v2PaginationResponse'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            next_token:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+                            result_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                            total_size:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: integer
+                                format: int32
+                      results:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/v2UserItem'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                id:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                updated_at:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: date-time
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+  /api/v2/decision_logs/users/{id}:
+    extensionprops: {}
+    get:
+      extensionprops: {}
+      tags:
+        - decision_logs
+      summary: Get a user referenced by decision logs
+      description: Returns the location of a single user that may be referenced by decision logs.
+      operationId: decision_logs.get_user
+      parameters:
+        - ref: ""
+          value:
+            extensionprops: {}
+            name: id
+            in: path
+            required: true
+            schema:
+              ref: ""
+              value:
+                extensionprops: {}
+                type: string
+      responses:
+        "200":
+          ref: ""
+          value:
+            extensionprops: {}
+            description: A successful response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/v2GetUserResponse'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      user:
+                        ref: '#/components/schemas/v2User'
+                        value:
+                          extensionprops: {}
+                          type: object
+                          properties:
+                            url:
+                              ref: ""
+                              value:
+                                extensionprops: {}
+                                type: string
+        default:
+          ref: ""
+          value:
+            extensionprops: {}
+            description: An unexpected error response.
+            content:
+              application/json:
+                extensionprops: {}
+                schema:
+                  ref: '#/components/schemas/rpcStatus'
+                  value:
+                    extensionprops: {}
+                    type: object
+                    properties:
+                      code:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: integer
+                          format: int32
+                      details:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: array
+                          items:
+                            ref: '#/components/schemas/protobufAny'
+                            value:
+                              extensionprops: {}
+                              type: object
+                              properties:
+                                type_url:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                value:
+                                  ref: ""
+                                  value:
+                                    extensionprops: {}
+                                    type: string
+                                    format: byte
+                      message:
+                        ref: ""
+                        value:
+                          extensionprops: {}
+                          type: string
+      security:
+        - DecisionLogsAPIKey: []
+          TenantID: []
+security:
+  - DecisionLogsAPIKey: []
+    TenantID: []
+servers:
+  - extensionprops: {}
+    url: https://decision-logs.prod.aserto.com
+    description: Decision logs service
+tags:
+  - extensionprops: {}
+    name: DecisionLogs
+externalDocs:
+  extensionprops: {}
+  description: API documentation
+  url: https://docs.aserto.com

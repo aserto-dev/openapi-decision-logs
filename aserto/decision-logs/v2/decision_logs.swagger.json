@@ -1,0 +1,642 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "aserto/decision-logs/v2/decision_logs.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "DecisionLogs"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v2/decision_logs/decision_logs": {
+      "get": {
+        "summary": "List available decision logs",
+        "description": "Returns a collection of decision logs.",
+        "operationId": "decision_logs.list_decision_logs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListDecisionLogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page.size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "policies",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    },
+    "/api/v2/decision_logs/decision_logs/{name}": {
+      "get": {
+        "summary": "Get a decision log",
+        "description": "Returns the location of a single decison log instance.",
+        "operationId": "decision_logs.get_decision_log",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetDecisionLogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    },
+    "/api/v2/decision_logs/decisions/policy/{policy_name}/{instance_label}": {
+      "get": {
+        "summary": "decision event stream",
+        "description": "Returns a stream of decisions",
+        "operationId": "decision_logs.decisions",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v2GetDecisionsResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of v2GetDecisionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "policy_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "instance_label",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    },
+    "/api/v2/decision_logs/query": {
+      "post": {
+        "summary": "query decision logs",
+        "description": "Returns a collection of raw decision logs strings matching the query specification.",
+        "operationId": "decision_logs.query",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ExecuteQueryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v2ExecuteQueryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    },
+    "/api/v2/decision_logs/users": {
+      "get": {
+        "summary": "List users referenced by decision logs",
+        "description": "Returns a collection of users that may be referenced by decision logs.",
+        "operationId": "decision_logs.list_users",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListUsersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page.size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page.token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    },
+    "/api/v2/decision_logs/users/{id}": {
+      "get": {
+        "summary": "Get a user referenced by decision logs",
+        "description": "Returns the location of a single user that may be referenced by decision logs.",
+        "operationId": "decision_logs.get_user",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "decision_logs"
+        ],
+        "security": [
+          {
+            "DecisionLogsAPIKey": [],
+            "TenantID": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v2Decision": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "path": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/v2DecisionUser"
+        },
+        "policy": {
+          "$ref": "#/definitions/v2DecisionPolicy"
+        },
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "resource": {
+          "type": "object"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "type": "string"
+        }
+      },
+      "title": "represents a decision that an authorizer performed in the past"
+    },
+    "v2DecisionLog": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "v2DecisionLogItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v2DecisionPolicy": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/definitions/v2PolicyContext"
+        },
+        "registry_service": {
+          "type": "string"
+        },
+        "registry_image": {
+          "type": "string"
+        },
+        "registry_tag": {
+          "type": "string"
+        },
+        "registry_digest": {
+          "type": "string"
+        },
+        "policy_instance": {
+          "$ref": "#/definitions/v2PolicyInstance"
+        }
+      },
+      "title": "information about a policy used in a decision"
+    },
+    "v2DecisionUser": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "$ref": "#/definitions/v2IdentityContext"
+        },
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "information about a user on behalf of whom a decision was made"
+    },
+    "v2ExecuteQueryRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/v2PaginationRequest"
+        },
+        "policy_name": {
+          "type": "string"
+        },
+        "instance_label": {
+          "type": "string"
+        },
+        "top_n": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "v2ExecuteQueryResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/v2PaginationResponse"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2Result"
+          }
+        }
+      }
+    },
+    "v2GetDecisionLogResponse": {
+      "type": "object",
+      "properties": {
+        "log": {
+          "$ref": "#/definitions/v2DecisionLog"
+        }
+      }
+    },
+    "v2GetDecisionsResponse": {
+      "type": "object",
+      "properties": {
+        "decision": {
+          "$ref": "#/definitions/v2Decision"
+        }
+      }
+    },
+    "v2GetUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v2User"
+        }
+      }
+    },
+    "v2IdentityContext": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v2IdentityType"
+        }
+      }
+    },
+    "v2IdentityType": {
+      "type": "string",
+      "enum": [
+        "IDENTITY_TYPE_UNKNOWN",
+        "IDENTITY_TYPE_NONE",
+        "IDENTITY_TYPE_SUB",
+        "IDENTITY_TYPE_JWT"
+      ],
+      "default": "IDENTITY_TYPE_UNKNOWN",
+      "description": "Identity types, describes the payload type of the identity field inside the IdentityContext message.\n\n - IDENTITY_TYPE_UNKNOWN: Unknown, value not set, requests will fail with identity type not set error.\n - IDENTITY_TYPE_NONE: None, no explicit identity context set, equals anonymous.\n - IDENTITY_TYPE_SUB: Sub(ject), identity field contains an oAUTH subject.\n - IDENTITY_TYPE_JWT: JWT, identity field contains a JWT access token."
+    },
+    "v2ListDecisionLogsResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/v2PaginationResponse"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2DecisionLogItem"
+          }
+        }
+      }
+    },
+    "v2ListUsersResponse": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/v2PaginationResponse"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2UserItem"
+          }
+        }
+      }
+    },
+    "v2PaginationRequest": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "v2PaginationResponse": {
+      "type": "object",
+      "properties": {
+        "next_token": {
+          "type": "string"
+        },
+        "result_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_size": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "v2PolicyContext": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v2PolicyInstance": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "instance_label": {
+          "type": "string"
+        }
+      }
+    },
+    "v2Result": {
+      "type": "object",
+      "properties": {
+        "log": {
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/definitions/v2Decision"
+        }
+      }
+    },
+    "v2User": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "v2UserItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "DecisionLogsAPIKey": {
+      "type": "apiKey",
+      "name": "authorization",
+      "in": "header"
+    },
+    "TenantID": {
+      "type": "apiKey",
+      "name": "aserto-tenant-id",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "DecisionLogsAPIKey": [],
+      "TenantID": []
+    }
+  ]
+}
